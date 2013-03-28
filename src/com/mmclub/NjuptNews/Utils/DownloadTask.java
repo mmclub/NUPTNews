@@ -3,10 +3,7 @@ package com.mmclub.NjuptNews.Utils;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import java.io.BufferedInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -19,7 +16,8 @@ import java.net.URLConnection;
  */
 public class DownloadTask  extends AsyncTask<String, Integer, String> {
 
-        public static final String PATH = "/sdcard/njuptNews";
+        public static final String PATH = "/sdcard/";
+
 
 
         @Override
@@ -27,6 +25,11 @@ public class DownloadTask  extends AsyncTask<String, Integer, String> {
             try {
                 URL url = new URL(sUrl[0]);
                 String file_name = sUrl[1];
+
+
+                File file = new File(PATH + file_name);
+
+
                 URLConnection connection = url.openConnection();
                 connection.connect();
                 // this will be useful so that you can show a typical 0-100% progress bar
@@ -34,7 +37,7 @@ public class DownloadTask  extends AsyncTask<String, Integer, String> {
 
                 // download the file
                 InputStream input = new BufferedInputStream(url.openStream());
-                OutputStream output = new FileOutputStream(PATH + file_name);
+                OutputStream output = new FileOutputStream(file);
 
                 byte data[] = new byte[1024];
                 long total = 0;

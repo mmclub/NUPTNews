@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MobileNews</string>
+    <string name="about_title1">团委手机报</string>
+    <string name="about_p1">南京邮电大学校团委</string>
+    <string name="about">关于</string>
 </resources>
