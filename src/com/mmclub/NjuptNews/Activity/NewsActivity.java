@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,19 +16,20 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.mmclub.NjuptNews.NewsApplication;
 import com.mmclub.NjuptNews.R;
 import com.mmclub.NjuptNews.Utils.FileUtils;
 
 import com.mmclub.NjuptNews.R;
 
-public class NewsActivity extends Activity {
+/**
+ * Author : Linxiangyu
+ */
+public class NewsActivity extends BaseActivity {
     /*
      * Reference: http://blog.csdn.net/wangkuifeng0118/article/details/7388166
      */
@@ -46,6 +48,7 @@ public class NewsActivity extends Activity {
 
     private String getContent(String dir, int number) {
         try {
+
             String filePath =  dir + String.valueOf(number) + "/content.txt";
             Log.d("TAG", filePath);
             File file = new File(filePath);
@@ -85,7 +88,7 @@ public class NewsActivity extends Activity {
         text4 = (TextView) list.get(3).findViewById(R.id.text4);
         text5 = (TextView) list.get(4).findViewById(R.id.text5);
 
-        String dirName =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/nuptnews/1/";
+        String dirName = NewsApplication.DIR + getIntent().getIntExtra(WEEK_NUMBER,1) + "/";
 
         Log.d("TAG", dirName);
 
@@ -243,4 +246,6 @@ public class NewsActivity extends Activity {
         }
 
     }
+
+
 }

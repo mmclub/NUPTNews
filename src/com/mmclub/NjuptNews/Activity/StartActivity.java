@@ -3,6 +3,7 @@ package com.mmclub.NjuptNews.Activity;
 
 
 
+import com.mmclub.NjuptNews.NewsApplication;
 import com.mmclub.NjuptNews.R;
 
 import android.app.Activity;
@@ -13,16 +14,12 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
+import java.io.File;
+
 /**
- * Created with IntelliJ IDEA.
- * User: linxiangyu
- * Date: 13-3-13
- * Time: 涓嬪崍2:53
- * To change this template use File | Settings | File Templates.
+ * Author: PanLei
  */
-public class StartActivity extends Activity {
-
-
+public class StartActivity extends Activity{
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +28,18 @@ public class StartActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);//全屏
         setContentView(R.layout.start_activity);
 
+        File dir = new File(NewsApplication.DIR);
+        if (!dir.exists()){
+            dir.mkdir();
+        }
+
         //闪屏的核心代码
 
         new Handler().postDelayed(new Runnable() {
 
             public void run() {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(StartActivity.this,NewsActivity.class);
+                Intent intent = new Intent(StartActivity.this, NewsActivity.class);
                 startActivity(intent);
                 StartActivity.this.finish();
 
@@ -45,5 +47,6 @@ public class StartActivity extends Activity {
         }, 1000);//闪屏时间为1秒
 
     };
+
 
 }
