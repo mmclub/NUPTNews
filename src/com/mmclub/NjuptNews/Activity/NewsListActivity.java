@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import com.mmclub.NjuptNews.NewsApplication;
 import com.mmclub.NjuptNews.R;
+import com.mmclub.NjuptNews.Update.CheckNewsService;
 import com.mmclub.NjuptNews.Utils.FileUtils;
 
 import java.io.File;
@@ -86,7 +87,7 @@ public class NewsListActivity extends ListActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                Intent intent1 = new Intent("com.mmclub.NjuptNews.UpdateContent");
+                Intent intent1 = new Intent(NewsListActivity.this, CheckNewsService.class);
                 startService(intent1);
                 break;
             case 2:

@@ -46,12 +46,18 @@ public class CheckNewsService extends Service {
             }
         };
 
-        new CheckNewThread(handler).start();
 
     }
 
     public void onStart(Intent intent, int startId) {
 
+    }
+
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        new CheckNewThread(handler).start();
+        return super.onStartCommand(intent, flags, startId);    //To change body of overridden methods use File | Settings | File Templates.
     }
 
     public void createNotification(int week_number) {

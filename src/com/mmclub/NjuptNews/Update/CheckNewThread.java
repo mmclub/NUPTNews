@@ -39,7 +39,7 @@ public class CheckNewThread extends Thread {
             News news = getNews(NewsApplication.CHECK_NEW_URL);
             if (news != null) {
                 String zipPackName = String.valueOf(news.week_number) + ".zip";
-                File file = new File(zipPackName);
+                File file = new File(STORE_PATH + zipPackName);
                 if (!file.exists()) {
                     Log.d("TAG", zipPackName);
                     downloadFiles(news.url, zipPackName);

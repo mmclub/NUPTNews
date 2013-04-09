@@ -29,7 +29,7 @@ public class BaseActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 1:
-                Intent intent1 = new Intent("com.mmclub.NjuptNews.UpdateContent");
+                Intent intent1 = new Intent(BaseActivity.this, CheckNewsService.class);
                 startService(intent1);
                 break;
             case 2:
