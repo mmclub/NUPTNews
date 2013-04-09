@@ -4,35 +4,74 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <ScrollView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/end" >
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
 
-            <TextView
-                    android:id="@+id/title1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:text="@string/about_title1"
-                    android:textColor="#2c16d3"
-                    android:textSize="30dp"
-                    android:textStyle="bold" />
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:text="@string/about_p1"
-                    android:textColor="#FFF"
-                    android:textStyle="bold" />
 
-        </LinearLayout>
-    </ScrollView>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="内容制作"
+            android:textSize="30sp"
+            android:id="@+id/about_contentprovider" android:layout_gravity="center"/>
 
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                    "
+            android:textSize="12sp"
+            android:id="@+id/about_empty" android:layout_gravity="center"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="南京邮电大学南邮青年杂志社"
+            android:textSize="18sp"
+            android:id="@+id/about_nuqn" android:layout_gravity="center"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                    "
+            android:textSize="30sp"
+            android:id="@+id/about_empty" android:layout_gravity="center"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="软件开发"
+            android:textSize="30sp"
+            android:id="@+id/about_developer"
+            android:layout_gravity="center"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                    "
+            android:textSize="12sp"
+            android:id="@+id/about_empty" android:layout_gravity="center"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="南京邮电大学移动互联网开发者俱乐部"
+            android:textSize="18sp"
+            android:id="@+id/about_mmclub" android:layout_gravity="center"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="                    "
+            android:textSize="12sp"
+            android:id="@+id/about_empty" android:layout_gravity="center"/>
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="胡雪茜 林翔宇 苏东生 潘磊 苏东生 王涛"
+            android:id="@+id/textView" android:layout_gravity="center"/>
 </LinearLayout>
