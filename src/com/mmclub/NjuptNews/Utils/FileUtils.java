@@ -4,6 +4,7 @@ import com.mmclub.NjuptNews.NewsApplication;
 import org.apache.http.util.EncodingUtils;
 
 import java.io.*;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -47,4 +48,14 @@ public class FileUtils {
 
         return text.toString();
     }
+
+
+    public static  String[] file_list_to_string_array(List<File> list){
+        String[] strings = new String[list.size()];
+        for(int i = 0; i < list.size(); i++){
+            strings[i] = list.get(i).getName();
+        }
+        return strings;
+    }
+
 }

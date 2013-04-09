@@ -3,28 +3,29 @@
           package="com.mmclub.NjuptNews"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="8"/>
-    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:name=".NewsApplication">
+    <uses-sdk android:minSdkVersion="8"
+              android:targetSdkVersion="16"/>
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher" android:name=".NewsApplication"
+                 android:theme="@android:style/Theme.NoTitleBar">
         <activity android:name="com.mmclub.NjuptNews.Activity.StartActivity">
-                  <!--android:label="@string/app_name">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
-        </activity>
-        <activity android:name=".Activity.NewsListActivity" android:label="newslist_activity"/>
-        <service android:name=".Update.CheckNewsService"/>
-        <activity android:name="com.mmclub.NjuptNews.Activity.NewsActivity"></activity>
-        <activity android:name=".Activity.AboutActivity">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.NewsListActivity"/>
+        <service android:name=".Update.CheckNewsService">
+
+        </service>
+        <activity android:name="com.mmclub.NjuptNews.Activity.NewsActivity"></activity>
+        <activity android:name=".Activity.AboutActivity"/>
+
 
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 </manifest>

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -15,19 +16,20 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.mmclub.NjuptNews.NewsApplication;
 import com.mmclub.NjuptNews.R;
 import com.mmclub.NjuptNews.Utils.FileUtils;
 
 import com.mmclub.NjuptNews.R;
 
-public class NewsActivity extends Activity {
+/**
+ * Author : Linxiangyu
+ */
+public class NewsActivity extends BaseActivity {
     /*
      * Reference: http://blog.csdn.net/wangkuifeng0118/article/details/7388166
      */
@@ -46,13 +48,14 @@ public class NewsActivity extends Activity {
 
     private String getContent(String dir, int number) {
         try {
-            String filePath =  dir + String.valueOf(number) + "/content.txt";
+
+            String filePath = dir + String.valueOf(number) + "/content.txt";
             Log.d("TAG", filePath);
             File file = new File(filePath);
-            if (!file.exists()){
+            if (!file.exists()) {
                 return "not content";
             }
-            String content =  FileUtils.readFile(file);
+            String content = FileUtils.readFile(file);
             Log.d("TAG-Conten", content);
             return content;
         } catch (Exception e) {
@@ -62,9 +65,12 @@ public class NewsActivity extends Activity {
     }
 
     private Bitmap getBitmap(String dir, int number) {
-        File file = new File(dir + String.valueOf(number) + "/img.png");
-        if (file.exists()) {
-            return BitmapFactory.decodeFile(file.getAbsolutePath());
+        File file1 = new File(dir + String.valueOf(number) + "/img.png");
+        File file2 = new File(dir + String.valueOf(number) + "/img.jpg");
+        if (file1.exists()) {
+            return BitmapFactory.decodeFile(file1.getAbsolutePath());
+        } else if (file2.exists()) {
+            return BitmapFactory.decodeFile(file2.getAbsolutePath());
         } else {
             return null;
         }
@@ -85,7 +91,7 @@ public class NewsActivity extends Activity {
         text4 = (TextView) list.get(3).findViewById(R.id.text4);
         text5 = (TextView) list.get(4).findViewById(R.id.text5);
 
-        String dirName =  Environment.getExternalStorageDirectory().getAbsolutePath() + "/nuptnews/1/";
+        String dirName = NewsApplication.DIR + getIntent().getIntExtra(WEEK_NUMBER, 1) + "/";
 
         Log.d("TAG", dirName);
 
@@ -100,11 +106,11 @@ public class NewsActivity extends Activity {
         text4.setText(getContent(dirName, 4));
         text5.setText(getContent(dirName, 5));
 
-        img1.setImageBitmap(getBitmap(dirName,1));
-        img2.setImageBitmap(getBitmap(dirName,2));
-        img3.setImageBitmap(getBitmap(dirName,3));
-        img4.setImageBitmap(getBitmap(dirName,4));
-        img5.setImageBitmap(getBitmap(dirName,5));
+        img1.setImageBitmap(getBitmap(dirName, 1));
+        img2.setImageBitmap(getBitmap(dirName, 2));
+        img3.setImageBitmap(getBitmap(dirName, 3));
+        img4.setImageBitmap(getBitmap(dirName, 4));
+        img5.setImageBitmap(getBitmap(dirName, 5));
 
 
     }
@@ -114,7 +120,6 @@ public class NewsActivity extends Activity {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         LayoutInflater inflater = getLayoutInflater();
-
 
 
         list = new ArrayList<View>();
@@ -149,8 +154,6 @@ public class NewsActivity extends Activity {
         }
 
         setContentView(main);
-
-
 
 
         viewPager.setAdapter(new MyAdapter());
@@ -243,4 +246,6 @@ public class NewsActivity extends Activity {
         }
 
     }
+
+
 }
