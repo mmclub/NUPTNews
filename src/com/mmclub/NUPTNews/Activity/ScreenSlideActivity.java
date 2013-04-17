@@ -18,6 +18,7 @@ package com.mmclub.NUPTNews.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
@@ -109,7 +110,7 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.create(position);
+            return ScreenSlidePageFragment.create(position, Environment.getExternalStorageDirectory() + "news/demo/");
         }
 
         @Override

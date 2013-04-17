@@ -17,11 +17,14 @@
 package com.mmclub.NUPTNews.Activity;
 
 import android.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
+import com.mmclub.NUPTNews.NewsApplication;
 import com.mmclub.NUPTNews.R;
 
 
@@ -31,16 +34,19 @@ public class ScreenSlidePageFragment extends android.support.v4.app.Fragment {
 
     private int mPageNumber;
 
+    private String contentDir;
 
-    public static ScreenSlidePageFragment create(int pageNumber) {
-        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment();
+
+    public static ScreenSlidePageFragment create(int pageNumber, String contentDir) {
+        ScreenSlidePageFragment fragment = new ScreenSlidePageFragment(contentDir);
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNumber);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public ScreenSlidePageFragment() {
+    public ScreenSlidePageFragment(String contentDir) {
+        this.contentDir = contentDir;
     }
 
     @Override
@@ -56,9 +62,11 @@ public class ScreenSlidePageFragment extends android.support.v4.app.Fragment {
         ViewGroup rootView = (ViewGroup) inflater
                 .inflate(R.layout.fragment_screen_slide_page, container, false);
 
-        // Set the title view to show the page number.
-        ((TextView) rootView.findViewById(android.R.id.text1)).setText(
-             "This is page " + String.valueOf(getPageNumber()));
+
+
+       // String url = "file:///" + contentDir + String.valueOf(mPageNumber) + ".html";
+        String url = "file:///mnt/sdcard/news/demo/" + String.valueOf(mPageNumber) + ".html";
+        ((WebView)(rootView.findViewById(R.id.webview))).loadUrl(url);
 
         return rootView;
     }
