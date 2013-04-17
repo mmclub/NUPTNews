@@ -27,6 +27,7 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+import com.mmclub.NUPTNews.NewsApplication;
 import com.mmclub.NUPTNews.R;
 
 
@@ -38,7 +39,7 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
 
     private ViewPager mPager;
 
-    private String mContentDir = Environment.getExternalStorageDirectory() + "news/demo/";
+    private String mContentDir = NewsApplication.DIR + "1/";
 
     private PagerAdapter mPagerAdapter;
 

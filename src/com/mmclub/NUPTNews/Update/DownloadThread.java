@@ -2,6 +2,7 @@ package com.mmclub.NUPTNews.Update;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.URI;
 import java.net.URL;
 
 import android.app.Notification;
@@ -9,6 +10,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import com.mmclub.NUPTNews.Activity.ScreenSlideActivity;
 import com.mmclub.NUPTNews.NewsApplication;
@@ -26,17 +28,17 @@ public class DownloadThread extends Thread {
     String full_content_dir;
 
 
-    public DownloadThread(String url, String content_dir) {
+    public DownloadThread(String url, String name) {
         this.url = url;
-        this.content_dir = content_dir;
-        full_content_dir = STORE_PATH + full_content_dir + "/";
+        this.content_dir = name;
     }
 
 
     @Override
     public void run() {
         if (NetworkUtils.isNetWorkUseable(NewsApplication.getContext())) {
-            String zipPackName = content_dir + ".zip";
+            String zipPackName =  content_dir + ".zip";
+            Log.d("TAG", "zip Name:" + zipPackName);
             File file = new File(STORE_PATH + zipPackName);
             if (!file.exists()) {
                 downloadFiles(url, zipPackName);
@@ -44,6 +46,8 @@ public class DownloadThread extends Thread {
             }
         }
     }
+
+
 
 
     private String downloadFiles(String download_url, String file_name) {
@@ -96,7 +100,7 @@ public class DownloadThread extends Thread {
         notificationIntent.setClass(context,
                 ScreenSlideActivity.class);
 
-        notificationIntent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR, full_content_dir);
+        notificationIntent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR,  content_dir);
 
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0,

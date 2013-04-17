@@ -18,9 +18,10 @@ public class UnzipUtils {
      */
 
 
-    public static boolean unpackZip(String path, String zipname) {
+    public static String unpackZip(String path, String zipname) {
         InputStream is;
         ZipInputStream zis;
+        String unzip_path = null;
         try {
             String filename;
             is = new FileInputStream(path + zipname);
@@ -38,6 +39,8 @@ public class UnzipUtils {
                 if (ze.isDirectory()) {
                     File fmd = new File(path + filename);
                     fmd.mkdirs();
+                    if (unzip_path == null)
+                        unzip_path = fmd.getAbsolutePath();
                     continue;
                 }
 
@@ -55,9 +58,9 @@ public class UnzipUtils {
             zis.close();
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
+            return unzip_path;
         }
 
-        return true;
+        return unzip_path;
     }
 }

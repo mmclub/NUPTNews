@@ -31,6 +31,7 @@ public class NewsListActivity extends SherlockListActivity {
         startActivity(intent);
     }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -40,12 +41,22 @@ public class NewsListActivity extends SherlockListActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        init_file_array();
+        setListAdapter(new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, file_array));
+    }
+
     private void init_file_array() {
         File[] files = new File(NewsApplication.DIR).listFiles();
         int len = 0;
         for (File file : files){
-            if (file.getName().matches("^[0-9]*$"))
+
+            if (file.getName().matches("^[0-9]*$")){
                 len++;
+            }
         }
         file_array = new String[len];
         int now = 0;
@@ -55,7 +66,6 @@ public class NewsListActivity extends SherlockListActivity {
                 now++;
             }
         }
-
     }
 
     private int findWeekNumberByPositon(int position){

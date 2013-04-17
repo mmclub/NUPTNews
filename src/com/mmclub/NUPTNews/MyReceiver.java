@@ -11,6 +11,7 @@ import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
 import com.mmclub.NUPTNews.Activity.ScreenSlideActivity;
 import com.mmclub.NUPTNews.Update.DownloadThread;
+import org.json.JSONObject;
 
 /**
  * 自定义接收器
@@ -39,10 +40,16 @@ public class MyReceiver extends BroadcastReceiver {
                 Log.d(TAG, "接收UnRegistration Id : " + regId);
             //send the UnRegistration Id to your server...
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
+            String message =   bundle.getString(JPushInterface.EXTRA_MESSAGE);
             if (NewsApplication.IS_DEBUG)
                 Log.d(TAG, "接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
-            new DownloadThread("http://linxiangyu.tk", "4").start();
-        
+            try {
+                JSONObject json = new JSONObject(message);
+                new DownloadThread(json.getString("url"), json.getString("name")).start();
+            }catch (Exception e){
+
+            }
+
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             if (NewsApplication.IS_DEBUG)
                 Log.d(TAG, "接收到推送下来的通知");
