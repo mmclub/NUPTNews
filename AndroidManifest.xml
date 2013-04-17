@@ -62,7 +62,14 @@
                 android:name="com.mmclub.NUPTNews.Activity.AboutActivity"
                 android:label="关于南邮手机报">
         </activity>
+        <activity
+                android:name="com.mmclub.NUPTNews.Activity.StartActivity">
 
+        </activity>
+
+        <activity
+                android:name="com.mmclub.NUPTNews.Activity.NewsListActivity"
+                android:label="南邮手机报-往期列表"></activity>
 
         <!-- Required SDK核心功能-->
         <activity

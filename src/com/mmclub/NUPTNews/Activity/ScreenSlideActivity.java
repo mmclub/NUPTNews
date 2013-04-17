@@ -32,11 +32,13 @@ import com.mmclub.NUPTNews.R;
 
 public class ScreenSlideActivity extends SherlockFragmentActivity {
 
-    private static final int NUM_PAGES = 5;
+    public static final String EXTIR_CONTENT_DIR = "DIR";
 
+    private static final int NUM_PAGES = 5;
 
     private ViewPager mPager;
 
+    private String mContentDir = Environment.getExternalStorageDirectory() + "news/demo/";
 
     private PagerAdapter mPagerAdapter;
 
@@ -44,6 +46,9 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen_slide);
+
+
+        initContentDir();
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -60,6 +65,9 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
 
 
 
+    private void initContentDir(){
+        mContentDir = getIntent().getStringExtra(EXTIR_CONTENT_DIR);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
@@ -76,6 +84,7 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
                         : R.string.action_next);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(Menu.NONE, 5, 5, "关于");
+        menu.add(Menu.NONE, 6, 6, "列表");
         return true;
     }
 
@@ -96,6 +105,9 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
 
             case 5:
                 NavUtils.navigateUpTo(this, new Intent(this, AboutActivity.class));
+
+            case 6:
+                NavUtils.navigateUpTo(this, new Intent(this, NewsListActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -110,7 +122,7 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return ScreenSlidePageFragment.create(position, Environment.getExternalStorageDirectory() + "news/demo/");
+            return ScreenSlidePageFragment.create(position, mContentDir);
         }
 
         @Override

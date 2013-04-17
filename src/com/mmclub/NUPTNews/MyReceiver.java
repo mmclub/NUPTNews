@@ -1,5 +1,8 @@
 package com.mmclub.NUPTNews;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import cn.jpush.android.api.JPushInterface;
 import com.mmclub.NUPTNews.Activity.ScreenSlideActivity;
+import com.mmclub.NUPTNews.Update.DownloadThread;
 
 /**
  * 自定义接收器
@@ -37,6 +41,7 @@ public class MyReceiver extends BroadcastReceiver {
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent.getAction())) {
             if (NewsApplication.IS_DEBUG)
                 Log.d(TAG, "接收到推送下来的自定义消息: " + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+            new DownloadThread("http://linxiangyu.tk", "4").start();
         
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
             if (NewsApplication.IS_DEBUG)
@@ -72,6 +77,8 @@ public class MyReceiver extends BroadcastReceiver {
 		}
 		return sb.toString();
 	}
-	
+
+
+
 
 }

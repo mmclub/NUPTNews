@@ -20,7 +20,7 @@ public class NewsApplication extends Application {
     public static boolean IS_DEBUG = true;
 
     public static final String CHECK_NEW_URL1 =  "https://trello-attachments.s3.amazonaws.com/513d607fdd5734c52f0013f1/514068b68f0f51413c001ac4/b9a14c0b0b24445b483753b95df7d32a/new.txt";
-    public static final String DIR = "/sdcard/nuptnews/";
+    public static final String DIR = "/sdcard/news2/";
     public static final String CHECK_NEW_URL =  "http://linxiangyu.tk/1.txt";
 
 

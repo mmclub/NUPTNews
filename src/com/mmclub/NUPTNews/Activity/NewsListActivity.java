@@ -8,15 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.actionbarsherlock.app.SherlockListActivity;
 import com.mmclub.NUPTNews.NewsApplication;
-import com.mmclub.NUPTNews.Update.CheckNewsService;
 
 import java.io.File;
 
 /**
  * Author : Linxiangyu
  */
-public class NewsListActivity extends ListActivity {
+public class NewsListActivity extends SherlockListActivity {
 
 
     String[] file_array;
@@ -26,8 +26,8 @@ public class NewsListActivity extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        Intent intent = new Intent(NewsListActivity.this, NewsActivity.class);
-        intent.putExtra(NewsActivity.WEEK_NUMBER, findWeekNumberByPositon(position));
+        Intent intent = new Intent(NewsListActivity.this, ScreenSlideActivity.class);
+        intent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR, NewsApplication.DIR + String.valueOf(findWeekNumberByPositon(position)) + "/");
         startActivity(intent);
     }
 
@@ -37,8 +37,6 @@ public class NewsListActivity extends ListActivity {
         init_file_array();
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, file_array));
-
-
 
     }
 
@@ -67,32 +65,26 @@ public class NewsListActivity extends ListActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        menu.add(1, 1, 1, "更新内容");//3,显式指定菜单项的组号，ID , 排序，标题
-        menu.add(1, 2, 2, "往期列表");
-        menu.add(1, 3, 3, "关于手机报");
+    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
+        menu.add(0,0,0,"关于");
+        menu.add(0,1,1,"最新内容");
         return true;
-
     }
 
+
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onMenuItemSelected(int featureId, com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
-            case 1:
-                Intent intent1 = new Intent(NewsListActivity.this, CheckNewsService.class);
-                startService(intent1);
+            case 0:
+                Intent intent1 = new Intent(this, AboutActivity.class);
+                startActivity(intent1);
                 break;
-            case 2:
-                Intent intent2 = new Intent(NewsListActivity.this, NewsListActivity.class);
+            case 1:
+                Intent intent2 = new Intent(this, ScreenSlideActivity.class);
                 startActivity(intent2);
                 break;
-            case 3:
-                Intent intent3 = new Intent(NewsListActivity.this,  AboutActivity.class);
-                startActivity(intent3);
-                break;
         }
-        return false;
+        return true;
     }
 
 }

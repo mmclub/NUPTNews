@@ -39,7 +39,7 @@ public class StartActivity extends Activity{
 
             public void run() {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(StartActivity.this, NewsActivity.class);
+                Intent intent = new Intent(StartActivity.this, ScreenSlideActivity.class);
                 startActivity(intent);
                 StartActivity.this.finish();
 
