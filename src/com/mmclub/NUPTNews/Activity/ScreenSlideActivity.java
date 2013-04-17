@@ -18,20 +18,18 @@ package com.mmclub.NUPTNews.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.mmclub.NUPTNews.R;
 
 
-public class ScreenSlideActivity extends android.support.v4.app.FragmentActivity {
+public class ScreenSlideActivity extends SherlockFragmentActivity {
 
     private static final int NUM_PAGES = 5;
 
@@ -59,10 +57,13 @@ public class ScreenSlideActivity extends android.support.v4.app.FragmentActivity
         });
     }
 
+
+
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
         super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.activity_screen_slide, menu);
+        getSupportMenuInflater().inflate(R.menu.activity_screen_slide, menu);
 
         menu.findItem(R.id.action_previous).setEnabled(mPager.getCurrentItem() > 0);
 
@@ -73,11 +74,12 @@ public class ScreenSlideActivity extends android.support.v4.app.FragmentActivity
                         ? R.string.action_finish
                         : R.string.action_next);
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+        menu.add(Menu.NONE, 5, 5, "关于");
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 NavUtils.navigateUpTo(this, new Intent(this, AboutActivity.class));
@@ -90,19 +92,23 @@ public class ScreenSlideActivity extends android.support.v4.app.FragmentActivity
             case R.id.action_next:
                 mPager.setCurrentItem(mPager.getCurrentItem() + 1);
                 return true;
+
+            case 5:
+                NavUtils.navigateUpTo(this, new Intent(this, AboutActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
     }
 
 
-    private class ScreenSlidePagerAdapter extends android.support.v4.app.FragmentStatePagerAdapter {
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(android.support.v4.app.FragmentManager fm) {
             super(fm);
         }
 
         @Override
-        public android.support.v4.app.Fragment getItem(int position) {
+        public Fragment getItem(int position) {
             return ScreenSlidePageFragment.create(position);
         }
 

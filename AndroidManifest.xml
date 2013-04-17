@@ -4,38 +4,36 @@
           android:versionCode="1"
           android:versionName="1"
         >
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
-
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17"/>
 
 
     <!--极光推送要求的权限-->
 
     <permission
             android:name="com.mmclub.NUPTNews.permission.JPUSH_MESSAGE"
-            android:protectionLevel="signature" />
+            android:protectionLevel="signature"/>
 
     <!-- Required  一些系统要求的权限，如访问网络等-->
-    <uses-permission android:name="com.mmclub.NUPTNews.permission.JPUSH_MESSAGE" />
-    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.mmclub.NUPTNews.permission.JPUSH_MESSAGE"/>
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
 
-
     <!-- Optional for location -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
 
 
     <!--自己需要用到的权限-->w
@@ -54,31 +52,34 @@
         <!-- For test only 测试的主程序-->
         <activity
                 android:name="com.mmclub.NUPTNews.Activity.ScreenSlideActivity"
-                android:label="@string/app_name" >
+                android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
+        <activity
+                android:name="com.mmclub.NUPTNews.Activity.AboutActivity"
+                android:label="关于南邮手机报">
+        </activity>
 
 
         <!-- Required SDK核心功能-->
         <activity
                 android:name="cn.jpush.android.ui.PushActivity"
                 android:theme="@android:style/Theme.Translucent.NoTitleBar"
-                android:configChanges="orientation|keyboardHidden" >
+                android:configChanges="orientation|keyboardHidden">
             <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.mmclub.NUPTNews" />
+                <action android:name="cn.jpush.android.ui.PushActivity"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="com.mmclub.NUPTNews"/>
             </intent-filter>
         </activity>
         <!-- Required  SDK核心功能-->
         <service
                 android:name="cn.jpush.android.service.DownloadService"
                 android:enabled="true"
-                android:exported="false" >
+                android:exported="false">
         </service>
 
 
@@ -88,10 +89,10 @@
                 android:enabled="true"
                 android:exported="false">
             <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+                <action android:name="cn.jpush.android.intent.REGISTER"/>
+                <action android:name="cn.jpush.android.intent.REPORT"/>
+                <action android:name="cn.jpush.android.intent.PushService"/>
+                <action android:name="cn.jpush.android.intent.PUSH_TIME"/>
 
             </intent-filter>
         </service>
@@ -99,112 +100,100 @@
         <!-- Required SDK核心功能-->
         <receiver
                 android:name="cn.jpush.android.service.PushReceiver"
-                android:enabled="true" >
+                android:enabled="true">
             <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
-                <category android:name="com.mmclub.NUPTNews" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
+                <!--Required  显示通知栏 -->
+                <category android:name="com.mmclub.NUPTNews"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.USER_PRESENT" />
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
             <!-- Optional -->
             <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.PACKAGE_REMOVED" />
-                <data android:scheme="package" />
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <data android:scheme="package"/>
             </intent-filter>
 
         </receiver>
 
         <!-- Required SDK核心功能-->
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver"/>
 
         <!-- User defined.  For test only  用户自定义的广播接收器-->
         <receiver
                 android:name="com.mmclub.NUPTNews.MyReceiver"
                 android:enabled="true">
             <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
-                <action android:name="cn.jpush.android.intent.UNREGISTRATION" />
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
-                <category android:name="com.mmclub.NUPTNews" />
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.UNREGISTRATION"/>
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <!--Required  用户打开自定义通知栏的intent-->
+                <category android:name="com.mmclub.NUPTNews"/>
             </intent-filter>
         </receiver>
 
 
         <!-- Required  . Enable it you can get statistics data with channel -->
         <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="fa4e14cf787c6e3d8ab9a700" /> <!--  </>值来自开发者平台取得的AppKey-->
+        <meta-data android:name="JPUSH_APPKEY" android:value="fa4e14cf787c6e3d8ab9a700"/>
+        <!--  </>值来自开发者平台取得的AppKey-->
 
     </application>
 </manifest>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         <!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
-          <!--package="com.mmclub.NUPTNews"-->
-          <!--android:versionCode="1"-->
-          <!--android:versionName="1.0">-->
-    <!--<uses-sdk android:minSdkVersion="8"-->
-              <!--android:targetSdkVersion="16"/>-->
+        <!--<manifest xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--package="com.mmclub.NUPTNews"-->
+        <!--android:versionCode="1"-->
+        <!--android:versionName="1.0">-->
+        <!--<uses-sdk android:minSdkVersion="8"-->
+        <!--android:targetSdkVersion="16"/>-->
 
 
+        <!--&lt;!&ndash; Required &ndash;&gt;-->
+        <!--<permission android:name="com.mmclub.NUPTNews.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />-->
 
+        <!--&lt;!&ndash; Required &ndash;&gt;-->
+        <!--<uses-permission android:name="You Package.permission.JPUSH_MESSAGE" />-->
+        <!--<uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />-->
+        <!--<uses-permission android:name="android.permission.INTERNET" />-->
+        <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
+        <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+        <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+        <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+        <!--<uses-permission android:name="android.permission.VIBRATE" />-->
+        <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
+        <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
 
+        <!--&lt;!&ndash; Optional. Required for location feature &ndash;&gt;-->
+        <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+        <!--<uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />-->
+        <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+        <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
+        <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+        <!--<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />-->
+        <!--<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />-->
 
-
-
-    <!--&lt;!&ndash; Required &ndash;&gt;-->
-    <!--<permission android:name="com.mmclub.NUPTNews.permission.JPUSH_MESSAGE" android:protectionLevel="signature" />-->
-
-    <!--&lt;!&ndash; Required &ndash;&gt;-->
-    <!--<uses-permission android:name="You Package.permission.JPUSH_MESSAGE" />-->
-    <!--<uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />-->
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-    <!--<uses-permission android:name="android.permission.WAKE_LOCK" />-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.VIBRATE" />-->
-    <!--<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-
-    <!--&lt;!&ndash; Optional. Required for location feature &ndash;&gt;-->
-    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
-    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />-->
-    <!--<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />-->
-
-    <!--<application android:label="@string/app_name"-->
-                 <!--android:theme="@style/Theme.Sherlock.Light"-->
-                 <!--android:icon="@drawable/ic_launcher"-->
-                 <!--android:name=".NewsApplication">-->
+        <!--<application android:label="@string/app_name"-->
+        <!--android:theme="@style/Theme.Sherlock.Light"-->
+        <!--android:icon="@drawable/ic_launcher"-->
+        <!--android:name=".NewsApplication">-->
 
         <!--<activity android:name="com.mmclub.NUPTNews.Activity.ScreenSlideActivity">-->
-            <!--android:label="@string/app_name">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN"/>-->
-                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
-            <!--</intent-filter>-->
+        <!--android:label="@string/app_name">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.MAIN"/>-->
+        <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+        <!--</intent-filter>-->
         <!--</activity>-->
         <!--<activity android:name=".Activity.NewsListActivity"/>-->
         <!--<service android:name=".Update.CheckNewsService">-->
@@ -214,58 +203,57 @@
         <!--<activity android:name=".Activity.AboutActivity"/>-->
 
 
-
         <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
         <!--<activity-->
-                <!--android:name="cn.jpush.android.ui.PushActivity"-->
-                <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
-                <!--android:configChanges="orientation|keyboardHidden" >-->
-            <!--<intent-filter>-->
-                <!--<action android:name="cn.jpush.android.ui.PushActivity" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-                <!--<category android:name="com.mmclub.NUPTNews" />-->
-            <!--</intent-filter>-->
+        <!--android:name="cn.jpush.android.ui.PushActivity"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar"-->
+        <!--android:configChanges="orientation|keyboardHidden" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="cn.jpush.android.ui.PushActivity" />-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--<category android:name="com.mmclub.NUPTNews" />-->
+        <!--</intent-filter>-->
         <!--</activity>-->
         <!--&lt;!&ndash; Required  SDK核心功能&ndash;&gt;-->
         <!--<service-->
-                <!--android:name="cn.jpush.android.service.DownloadService"-->
-                <!--android:enabled="true"-->
-                <!--android:exported="false" >-->
+        <!--android:name="cn.jpush.android.service.DownloadService"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="false" >-->
         <!--</service>-->
 
 
         <!--&lt;!&ndash; Required SDK 核心功能&ndash;&gt;-->
         <!--<service-->
-                <!--android:name="cn.jpush.android.service.PushService"-->
-                <!--android:enabled="true"-->
-                <!--android:exported="false">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="cn.jpush.android.intent.REGISTER" />-->
-                <!--<action android:name="cn.jpush.android.intent.REPORT" />-->
-                <!--<action android:name="cn.jpush.android.intent.PushService" />-->
-                <!--<action android:name="cn.jpush.android.intent.PUSH_TIME" />-->
+        <!--android:name="cn.jpush.android.service.PushService"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="false">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="cn.jpush.android.intent.REGISTER" />-->
+        <!--<action android:name="cn.jpush.android.intent.REPORT" />-->
+        <!--<action android:name="cn.jpush.android.intent.PushService" />-->
+        <!--<action android:name="cn.jpush.android.intent.PUSH_TIME" />-->
 
-            <!--</intent-filter>-->
+        <!--</intent-filter>-->
         <!--</service>-->
 
         <!--&lt;!&ndash; Required SDK核心功能&ndash;&gt;-->
         <!--<receiver-->
-                <!--android:name="cn.jpush.android.service.PushReceiver"-->
-                <!--android:enabled="true" >-->
-            <!--<intent-filter android:priority="1000">-->
-                <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   &lt;!&ndash;Required  显示通知栏 &ndash;&gt;-->
-                <!--<category android:name="com.mmclub.NUPTNews" />-->
-            <!--</intent-filter>-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.USER_PRESENT" />-->
-                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
-            <!--</intent-filter>-->
-            <!--&lt;!&ndash; Optional &ndash;&gt;-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
-                <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
-                <!--<data android:scheme="package" />-->
-            <!--</intent-filter>-->
+        <!--android:name="cn.jpush.android.service.PushReceiver"-->
+        <!--android:enabled="true" >-->
+        <!--<intent-filter android:priority="1000">-->
+        <!--<action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   &lt;!&ndash;Required  显示通知栏 &ndash;&gt;-->
+        <!--<category android:name="com.mmclub.NUPTNews" />-->
+        <!--</intent-filter>-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.USER_PRESENT" />-->
+        <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+        <!--</intent-filter>-->
+        <!--&lt;!&ndash; Optional &ndash;&gt;-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.intent.action.PACKAGE_ADDED" />-->
+        <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
+        <!--<data android:scheme="package" />-->
+        <!--</intent-filter>-->
 
         <!--</receiver>-->
 
@@ -275,12 +263,11 @@
         <!--&lt;!&ndash; User defined.  For test only  用户自定义的广播接收器&ndash;&gt;-->
 
 
-
         <!--&lt;!&ndash; Required  . Enable it you can get statistics data with channel &ndash;&gt;-->
         <!--<meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>-->
         <!--<meta-data android:name="JPUSH_APPKEY" android:value="fa4e14cf787c6e3d8ab9a700" /> &lt;!&ndash;  </>值来自开发者平台取得的AppKey&ndash;&gt;-->
 
 
-    <!--</application>-->
+        <!--</application>-->
 
-<!--</manifest>-->
+        <!--</manifest>-->
