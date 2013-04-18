@@ -24,7 +24,4 @@
 - 初始化极光推送
 
 ---
-
 正式上线后AndroidManifest.xml的极光推送的Key会被删掉
-
-
