@@ -26,6 +26,7 @@ public class DownloadThread extends Thread {
     String url;
     String content_dir;
     String full_content_dir;
+    String mZipPackName;
 
 
     public DownloadThread(String url, String name) {
@@ -37,12 +38,12 @@ public class DownloadThread extends Thread {
     @Override
     public void run() {
         if (NetworkUtils.isNetWorkUseable(NewsApplication.getContext())) {
-            String zipPackName =  content_dir + ".zip";
-            Log.d("TAG", "zip Name:" + zipPackName);
-            File file = new File(STORE_PATH + zipPackName);
+            String mZipPackName =  content_dir + ".zip";
+            if (NewsApplication.IS_DEBUG)
+                Log.d("TAG", "zip Name:" + mZipPackName);
+            File file = new File(STORE_PATH + mZipPackName);
             if (!file.exists()) {
-                downloadFiles(url, zipPackName);
-                UnzipUtils.unpackZip(STORE_PATH, zipPackName);
+                downloadFiles(url, mZipPackName);
             }
         }
     }
@@ -73,6 +74,8 @@ public class DownloadThread extends Thread {
 
             if (NewsApplication.IS_DEBUG)
                 Log.d("NUPTNews", "download finish");
+            UnzipUtils.unpackZip(STORE_PATH, file_name);
+
             createNotification();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,7 +103,8 @@ public class DownloadThread extends Thread {
         notificationIntent.setClass(context,
                 ScreenSlideActivity.class);
 
-        notificationIntent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR,  content_dir);
+        notificationIntent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR,  NewsApplication.DIR + content_dir + "/");
+        NewsApplication.setNewsetDir(NewsApplication.DIR + content_dir + "/");
 
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0,

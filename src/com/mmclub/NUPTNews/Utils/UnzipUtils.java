@@ -1,5 +1,7 @@
 package com.mmclub.NUPTNews.Utils;
 
+import android.util.Log;
+
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -23,6 +25,8 @@ public class UnzipUtils {
         ZipInputStream zis;
         String unzip_path = null;
         try {
+            Log.d("TAG", "unzip start");
+            Log.d("TAG", zipname);
             String filename;
             is = new FileInputStream(path + zipname);
             zis = new ZipInputStream(new BufferedInputStream(is));
@@ -33,6 +37,8 @@ public class UnzipUtils {
             while ((ze = zis.getNextEntry()) != null) {
                 // zapis do souboru
                 filename = ze.getName();
+
+                Log.d("TAG", "unzip"  + filename );
 
                 // Need to create directories if not exists, or
                 // it will generate an Exception...

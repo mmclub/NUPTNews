@@ -24,22 +24,26 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.mmclub.NUPTNews.NewsApplication;
 import com.mmclub.NUPTNews.R;
+import com.mmclub.NUPTNews.Utils.MediaUtils;
+
+import java.io.File;
 
 
 public class ScreenSlideActivity extends SherlockFragmentActivity {
 
     public static final String EXTIR_CONTENT_DIR = "DIR";
 
-    private static final int NUM_PAGES = 5;
+    private static final int NUM_PAGES = 9;
 
     private ViewPager mPager;
 
-    private String mContentDir = NewsApplication.DIR + "1/";
+    private String mContentDir;
 
     private PagerAdapter mPagerAdapter;
 
@@ -49,7 +53,8 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
         setContentView(R.layout.activity_screen_slide);
 
 
-        initContentDir();
+        mContentDir = initContentDir();
+        Log.d("TAG", "ContentDir " + mContentDir);
 
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -62,12 +67,25 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
                 invalidateOptionsMenu();
             }
         });
+
+        if (NewsApplication.isPlayMusic()){
+
+            if (new File(mContentDir + "back.mp3").exists()){
+
+                 MediaUtils.getInstance().play(mContentDir + "back.mp3");
+            }
+        }
     }
 
 
 
-    private void initContentDir(){
-        mContentDir = getIntent().getStringExtra(EXTIR_CONTENT_DIR);
+    private String initContentDir(){
+        if ((getIntent().getStringExtra(EXTIR_CONTENT_DIR)) == null){
+            Log.d("TAG", "null" + getIntent().getStringExtra(EXTIR_CONTENT_DIR));
+            return NewsApplication.getNewsetDir();
+        }else{
+            return getIntent().getStringExtra(EXTIR_CONTENT_DIR);
+        }
     }
 
     @Override
@@ -86,6 +104,7 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
         item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
         menu.add(Menu.NONE, 5, 5, "关于");
         menu.add(Menu.NONE, 6, 6, "列表");
+        menu.add(Menu.NONE, 10, 10, "设置");
         return true;
     }
 
@@ -105,10 +124,16 @@ public class ScreenSlideActivity extends SherlockFragmentActivity {
                 return true;
 
             case 5:
-                NavUtils.navigateUpTo(this, new Intent(this, AboutActivity.class));
+                startActivity( new Intent(this, AboutActivity.class));
+                return true;
 
             case 6:
-                NavUtils.navigateUpTo(this, new Intent(this, NewsListActivity.class));
+                startActivity(new Intent(this, NewsListActivity.class));
+                return true;
+
+            case 10:
+                startActivity( new Intent(this, PrefsActivity.class));
+                return true;
         }
 
         return super.onOptionsItemSelected(item);

@@ -19,6 +19,7 @@ public class BaseActivity extends SherlockActivity {
     public boolean onCreateOptionsMenu(com.actionbarsherlock.view.Menu menu) {
         menu.add(0,0,0,"关于");
         menu.add(0,1,1,"列表");
+        menu.add(0,2,2,"设置");
         return true;
     }
 
@@ -33,6 +34,10 @@ public class BaseActivity extends SherlockActivity {
             case 1:
                 Intent intent2 = new Intent(BaseActivity.this, NewsListActivity.class);
                 startActivity(intent2);
+                break;
+            case 2:
+                Intent intent3 = new Intent(BaseActivity.this, PrefsActivity.class);
+                startActivity(intent3);
                 break;
         }
         return true;

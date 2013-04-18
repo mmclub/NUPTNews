@@ -3,6 +3,8 @@ package com.mmclub.NUPTNews;
 import android.app.Application;
 import android.app.Notification;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.widget.Toast;
 import cn.jpush.android.api.BasicPushNotificationBuilder;
 import cn.jpush.android.api.CustomPushNotificationBuilder;
@@ -23,6 +25,8 @@ public class NewsApplication extends Application {
     public static final String DIR = "/sdcard/news2/";
     public static final String CHECK_NEW_URL =  "http://linxiangyu.tk/1.txt";
 
+    public static final String SHARED_PREFRENCE_NAME = "prefs";
+    public static final String NEWSEST_DIR = "newsest_dir";
 
     private static NewsApplication instance;
 
@@ -65,4 +69,23 @@ public class NewsApplication extends Application {
     }
 
 
+    public static void setNewsetDir(String dir){
+         SharedPreferences.Editor editor =  getContext().getSharedPreferences(SHARED_PREFRENCE_NAME, 0).edit();
+         editor.putString(NEWSEST_DIR, dir);
+         editor.commit();
+    }
+
+
+    public static String getNewsetDir(){
+        return getContext().getSharedPreferences(SHARED_PREFRENCE_NAME, 0).getString(NEWSEST_DIR, "/android_asset/user_guide/");
+    }
+
+    public static String getDefaultNewsDir(){
+        return "/android_asset/user_guide/";
+    }
+
+    public static boolean isPlayMusic(){
+        return PreferenceManager.getDefaultSharedPreferences(getContext()).
+                getBoolean(getContext().getResources().getString( R.string.is_music_on),  false);
+    }
 }

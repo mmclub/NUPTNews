@@ -27,7 +27,7 @@ public class NewsListActivity extends SherlockListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Intent intent = new Intent(NewsListActivity.this, ScreenSlideActivity.class);
-        intent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR, NewsApplication.DIR + String.valueOf(findWeekNumberByPositon(position)) + "/");
+        intent.putExtra(ScreenSlideActivity.EXTIR_CONTENT_DIR, NewsApplication.DIR + findWeekNumberName(position) + "/");
         startActivity(intent);
     }
 
@@ -53,15 +53,14 @@ public class NewsListActivity extends SherlockListActivity {
         File[] files = new File(NewsApplication.DIR).listFiles();
         int len = 0;
         for (File file : files){
-
-            if (file.getName().matches("^[0-9]*$")){
+            if (file.isDirectory()){
                 len++;
             }
         }
         file_array = new String[len];
         int now = 0;
         for (File file : files){
-            if (file.getName().matches("^[0-9]*$")){
+            if (file.isDirectory()){
                 file_array[now] = file.getName();
                 now++;
             }
@@ -70,6 +69,10 @@ public class NewsListActivity extends SherlockListActivity {
 
     private int findWeekNumberByPositon(int position){
         return Integer.valueOf(file_array[position]);
+    }
+
+    private String findWeekNumberName(int position){
+        return file_array[position];
     }
 
 

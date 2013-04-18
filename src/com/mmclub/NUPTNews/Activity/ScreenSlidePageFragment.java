@@ -19,6 +19,7 @@ package com.mmclub.NUPTNews.Activity;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class ScreenSlidePageFragment extends android.support.v4.app.Fragment {
 
 
     public static ScreenSlidePageFragment create(int pageNumber, String contentDir) {
+        /**
+         * @params  contentDir是本期内容绝对路径,如 file:///sdcard/news/1-南邮手机报第1s期/
+         */
         ScreenSlidePageFragment fragment = new ScreenSlidePageFragment(contentDir);
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, pageNumber);
@@ -65,7 +69,8 @@ public class ScreenSlidePageFragment extends android.support.v4.app.Fragment {
 
 
        // String url = "file:///" + contentDir + String.valueOf(mPageNumber) + ".html";
-        String url = "file://" + NewsApplication.DIR + String.valueOf(mPageNumber + 1) + ".html";
+        String url = "file://" + contentDir + String.valueOf(mPageNumber + 1) + ".html";
+        Log.d("TAG", "Load URL " +  url);
         ((WebView)(rootView.findViewById(R.id.webview))).loadUrl(url);
 
         return rootView;
