@@ -1,5 +1,7 @@
 # 南邮手机报
 
+*半成品，已废弃，不再开发*
+
 ## 编译依赖
 
 - 第三方库 ActionBarSherlock  需要自己下载，将library目录作为Android Libraray Project导入 <http://actionbarsherlock.com/>  为低版本的系统提供ActionBar导航，提供一致的UI界面
